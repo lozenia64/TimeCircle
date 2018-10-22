@@ -12,7 +12,6 @@ public class MainActivity extends TabActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         TabHostWindow = (TabHost)findViewById(android.R.id.tabhost);
 
         TabSpec TabMenu1 = TabHostWindow.newTabSpec("First tab");
