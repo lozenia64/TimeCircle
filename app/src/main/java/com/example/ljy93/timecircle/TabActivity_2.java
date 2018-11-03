@@ -42,13 +42,11 @@ public class TabActivity_2 extends Activity {
     int i; // 증가값 용도
     View dialogView, dialogTime;
     EditText edtName, edtColor;
-    Button btntime1, btntime2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_activity_2);
-
         for (i = 0; i < numBtnIDs.length; i++) numButtons[i] = (Button) findViewById(numBtnIDs[i]);
         for (i = 0; i < numBtnIDs.length; i++) {
             final int index;
@@ -56,8 +54,6 @@ public class TabActivity_2 extends Activity {
 
             numButtons[index].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    btntime1 = (Button) findViewById(R.id.btnTime1);
-                    btntime2 = (Button) findViewById(R.id.btnTime2);
                     touchedBtn = numButtons[index].toString();
                     subBtn = touchedBtn.substring(touchedBtn.length() - 6, touchedBtn.length() - 1);
                     //Toast.makeText(getApplicationContext(), subBtn + "을 선택했어요.", Toast.LENGTH_SHORT).show();
@@ -70,22 +66,6 @@ public class TabActivity_2 extends Activity {
                         public void onClick(DialogInterface dialog, int which) {
                             edtName = (EditText) dialogView.findViewById(R.id.selectName);
                             edtColor = (EditText) dialogView.findViewById(R.id.selectColor);
-
-
-                            btntime1.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    dialogTime = (View) View.inflate(TabActivity_2.this, R.layout.activity2_timepicker, null);
-                                    AlertDialog.Builder dlg = new AlertDialog.Builder(TabActivity_2.this);
-                                    dlg.setTitle("시간 선택");
-                                    dlg.setView(dialogView);
-                                    dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            
-                                        }
-                                    });
-                                }
-                            });
                         }
                     });
                     dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
