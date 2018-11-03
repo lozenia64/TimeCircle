@@ -5,13 +5,61 @@
     android:layout_height="match_parent"
     >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="WEEK SCHEDULER"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/week_noneday"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:text="      "/>
+            <TextView
+                android:id="@+id/week_monday"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:text="월요일"/>
+            <TextView
+                android:id="@+id/week_tuesday"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:text="화요일"/>
+            <TextView
+                android:id="@+id/week_wednesday"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:text="수요일"/>
+            <TextView
+                android:id="@+id/week_thursday"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:text="월요일"/>
+            <TextView
+                android:id="@+id/week_friday"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:text="목요일"/>
+            <TextView
+                android:id="@+id/week_saturday"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:text="금요일"/>
+            <TextView
+                android:id="@+id/monday"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:text="월요일"/>
+        </TableRow>
+
+    </TableLayout>
 
 </RelativeLayout>
