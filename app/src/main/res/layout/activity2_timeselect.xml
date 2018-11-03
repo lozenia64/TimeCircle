@@ -144,15 +144,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="색"
-        android:textSize="20dp" />
-
-    <EditText
-        android:id="@+id/selectColor"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/radio_color1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_color_red" />
+
+            <RadioButton
+                android:id="@+id/radio_color2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_color_orange" />
+
+            <RadioButton
+                android:id="@+id/radio_color3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_color_yellow" />
+
+            <RadioButton
+                android:id="@+id/radio_color4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_color_green" />
+
+            <RadioButton
+                android:id="@+id/radio_color5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_color_blue" />
+
+            <RadioButton
+                android:id="@+id/radio_color6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_color_navy" />
+
+            <RadioButton
+                android:id="@+id/radio_color7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/radio_color_purple" />
+
+        </RadioGroup>
+    </LinearLayout>
 
 </LinearLayout>
