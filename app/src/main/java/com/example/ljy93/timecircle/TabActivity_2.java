@@ -1,9 +1,13 @@
 package com.example.ljy93.timecircle;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class TabActivity_2 extends Activity {
@@ -36,6 +40,8 @@ public class TabActivity_2 extends Activity {
             R.id.btnMon23, R.id.btnTue23, R.id.btnWed23, R.id.btnThu23, R.id.btnFri23, R.id.btnSat23, R.id.btnSon23
     };
     int i; // 증가값 용도
+    View dialogView;
+    EditText edtWeek, edtTime, edtName, edtColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,25 @@ public class TabActivity_2 extends Activity {
                 public void onClick(View v) {
                     touchedBtn = numButtons[index].toString();
                     subBtn = touchedBtn.substring(touchedBtn.length() - 6, touchedBtn.length() - 1);
-                    Toast.makeText(getApplicationContext(), subBtn + "을 선택했어요.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), subBtn + "을 선택했어요.", Toast.LENGTH_SHORT).show();
+
+                    dialogView = (View) View.inflate(TabActivity_2.this, R.layout.activity2_timeselect, null);
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(TabActivity_2.this);
+                    dlg.setTitle("반복 일정 입력");
+                    dlg.setView(dialogView);
+                    dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            edtTime = (EditText) dialogView.findViewById(R.id.selectTime);
+                            edtName = (EditText) dialogView.findViewById(R.id.selectName);
+                            edtColor = (EditText) dialogView.findViewById(R.id.selectColor);
+                        }
+                    });
+                    dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(getApplicationContext(), "취소했어요.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    dlg.show();
                 }
             });
         }
