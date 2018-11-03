@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,29 +31,20 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 public class TabActivity_3 extends Activity {
-
-
-    String time,kcal,menu;
-    Button btntime1, btntime2;
-    View dialogView, dialogTime;
-    Button submitbtn;
-    EditText edtName, edtColor;
-    TextView showdate;
+    String time;
+    View dialogView;
+    EditText edtName, edtTime1, edtTime2, edtTime3, edtTime4;
+    RadioGroup radioWeek, radioColor;
+    String touchedWeek, touchedColor;
 
     private final  OneDayDecorator  oneDayDecorator = new OneDayDecorator();
-    Cursor cursor;
     MaterialCalendarView materialCalendarView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_activity_3);
-
         materialCalendarView = (MaterialCalendarView)findViewById(R.id.calendarView);
-
-        showdate = (TextView) findViewById(R.id.showdate);
-
         materialCalendarView.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
                 .setMinimumDate(CalendarDay.from(2017, 0, 1)) // 달력의 시작
@@ -72,9 +64,9 @@ public class TabActivity_3 extends Activity {
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                int Year = date.getYear();
-                int Month = date.getMonth() + 1;
-                int Day = date.getDay();
+                final int Year = date.getYear();
+                final int Month = date.getMonth() + 1;
+                final int Day = date.getDay();
 
                 Log.i("Year test", Year + "");
                 Log.i("Month test", Month + "");
@@ -85,21 +77,92 @@ public class TabActivity_3 extends Activity {
                 Log.i("shot_Day test", shot_Day + "");
                 materialCalendarView.clearSelection();
 
-                Toast.makeText(getApplicationContext(), shot_Day , Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), shot_Day , Toast.LENGTH_SHORT).show();
+
+                dialogView = (View) View.inflate(TabActivity_3.this, R.layout.activity3_timeselect, null);
+                AlertDialog.Builder dlg = new AlertDialog.Builder(TabActivity_3.this);
+                dlg.setTitle(Year+ "년 " + Month + "월 " + Day +"일 일정 추가");
+                dlg.setView(dialogView);
+                dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        radioWeek = (RadioGroup) dialogView.findViewById(R.id.radioGroup);
+                        switch (radioWeek.getCheckedRadioButtonId()) {
+                            case R.id.rg_btn1:
+                                touchedWeek = "월요일";
+                                break;
+                            case R.id.rg_btn2:
+                                touchedWeek = "화요일";
+                                break;
+                            case R.id.rg_btn3:
+                                touchedWeek = "수요일";
+                                break;
+                            case R.id.rg_btn4:
+                                touchedWeek = "목요일";
+                                break;
+                            case R.id.rg_btn5:
+                                touchedWeek = "금요일";
+                                break;
+                            case R.id.rg_btn6:
+                                touchedWeek = "토요일";
+                                break;
+                            case R.id.rg_btn7:
+                                touchedWeek = "일요일";
+                                break;
+                        }
+                        edtTime1 = (EditText) dialogView.findViewById(R.id.selectTime1);
+                        edtTime2 = (EditText) dialogView.findViewById(R.id.selectTime2);
+                        edtTime3 = (EditText) dialogView.findViewById(R.id.selectTime3);
+                        edtTime4 = (EditText) dialogView.findViewById(R.id.selectTime4);
+                        edtName = (EditText) dialogView.findViewById(R.id.selectName);
+                        radioColor = (RadioGroup) dialogView.findViewById(R.id.radioGroup2);
+                        switch (radioColor.getCheckedRadioButtonId()) {
+                            case R.id.radio_color1:
+                                touchedColor = "빨간색";
+                                break;
+                            case R.id.radio_color2:
+                                touchedColor = "주황색";
+                                break;
+                            case R.id.radio_color3:
+                                touchedColor = "노란색";
+                                break;
+                            case R.id.radio_color4:
+                                touchedColor = "초록색";
+                                break;
+                            case R.id.radio_color5:
+                                touchedColor = "파란색";
+                                break;
+                            case R.id.radio_color6:
+                                touchedColor = "남색";
+                                break;
+                            case R.id.radio_color7:
+                                touchedColor = "보라색";
+                                break;
+                        }
+
+                        Toast.makeText(getApplicationContext(), "종료", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), Integer.toString(Year) + "년 " + Integer.toString(Month) + "월 "
+                        //        + Integer.toString(Day) + "일" + edtTime1.getText().toString() + "시"
+                        //        + edtTime2.getText().toString() + "분부터 " + edtTime3.getText().toString() + "시"
+                        //        + edtTime4.getText().toString() + "분까지 " + touchedColor + "선택", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "일정 이름은 " + edtName.getText().toString() + "입니다.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "취소했어요.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                dlg.show();
             }
         });
-
-
     }
 
+
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
-
         String[] Time_Result;
-
         ApiSimulator(String[] Time_Result){
             this.Time_Result = Time_Result;
         }
-
         @Override
         protected List<CalendarDay> doInBackground(@NonNull Void... voids) {
             try {
@@ -124,21 +187,7 @@ public class TabActivity_3 extends Activity {
                 dates.add(day);
                 calendar.set(year,month-1,dayy);
             }
-
-
-
             return dates;
         }
-
-/*        @Override
-        protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
-            super.onPostExecute(calendarDays);
-
-            if (isFinishing()) {
-                return;
-            }
-
-            materialCalendarView.addDecorator(new EventDecorator(Color.GREEN, calendarDays,MainActivity.this));
-        } */
     }
 }
