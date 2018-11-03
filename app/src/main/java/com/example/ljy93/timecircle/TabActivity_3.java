@@ -1,12 +1,18 @@
 package com.example.ljy93.timecircle;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ljy93.timecircle.decorators.SaturdayDecorator;
@@ -27,9 +33,16 @@ public class TabActivity_3 extends Activity {
 
 
     String time,kcal,menu;
+    Button btntime1, btntime2;
+    View dialogView, dialogTime;
+    Button submitbtn;
+    EditText edtName, edtColor;
+    TextView showdate;
+
     private final  OneDayDecorator  oneDayDecorator = new OneDayDecorator();
     Cursor cursor;
     MaterialCalendarView materialCalendarView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +50,8 @@ public class TabActivity_3 extends Activity {
         setContentView(R.layout.activity_tab_activity_3);
 
         materialCalendarView = (MaterialCalendarView)findViewById(R.id.calendarView);
+
+        showdate = (TextView) findViewById(R.id.showdate);
 
         materialCalendarView.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
@@ -73,6 +88,8 @@ public class TabActivity_3 extends Activity {
                 Toast.makeText(getApplicationContext(), shot_Day , Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
