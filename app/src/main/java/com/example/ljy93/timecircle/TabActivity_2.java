@@ -66,56 +66,56 @@ public class TabActivity_2 extends Activity {
                     dlg.setView(dialogView);
                     dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            radioWeek = (RadioGroup) dialogView.findViewById(R.id.radioGroup);
+                            radioWeek = (RadioGroup) dialogView.findViewById(R.id.radioGroupWeek_2);
                             switch (radioWeek.getCheckedRadioButtonId()){
-                                case R.id.rg_btn1:
+                                case R.id.radio_week_2_1:
                                     touchedWeek = "월요일";
                                     break;
-                                case R.id.rg_btn2:
+                                case R.id.radio_week_2_2:
                                     touchedWeek = "화요일";
                                     break;
-                                case R.id.rg_btn3:
+                                case R.id.radio_week_2_3:
                                     touchedWeek = "수요일";
                                     break;
-                                case R.id.rg_btn4:
+                                case R.id.radio_week_2_4:
                                     touchedWeek = "목요일";
                                     break;
-                                case R.id.rg_btn5:
+                                case R.id.radio_week_2_5:
                                     touchedWeek = "금요일";
                                     break;
-                                case R.id.rg_btn6:
+                                case R.id.radio_week_2_6:
                                     touchedWeek = "토요일";
                                     break;
-                                case R.id.rg_btn7:
+                                case R.id.radio_week_2_7:
                                     touchedWeek = "일요일";
                                     break;
                             }
-                            edtTime1 = (EditText) dialogView.findViewById(R.id.selectTime1);
-                            edtTime2 = (EditText) dialogView.findViewById(R.id.selectTime2);
-                            edtTime3 = (EditText) dialogView.findViewById(R.id.selectTime3);
-                            edtTime4 = (EditText) dialogView.findViewById(R.id.selectTime4);
-                            edtName = (EditText) dialogView.findViewById(R.id.selectName);
-                            radioColor = (RadioGroup) dialogView.findViewById(R.id.radioGroup2);
+                            edtTime1 = (EditText) dialogView.findViewById(R.id.selectTime_2_1);
+                            edtTime2 = (EditText) dialogView.findViewById(R.id.selectTime_2_2);
+                            edtTime3 = (EditText) dialogView.findViewById(R.id.selectTime_2_3);
+                            edtTime4 = (EditText) dialogView.findViewById(R.id.selectTime_2_4);
+                            edtName = (EditText) dialogView.findViewById(R.id.selectName_2);
+                            radioColor = (RadioGroup) dialogView.findViewById(R.id.radioGroupColor_2);
                             switch (radioColor.getCheckedRadioButtonId()){
-                                case R.id.radio_color1:
+                                case R.id.radio_color_2_1:
                                     touchedColor = "빨간색";
                                     break;
-                                case R.id.radio_color2:
+                                case R.id.radio_color_2_2:
                                     touchedColor = "주황색";
                                     break;
-                                case R.id.radio_color3:
+                                case R.id.radio_color_2_3:
                                     touchedColor = "노란색";
                                     break;
-                                case R.id.radio_color4:
+                                case R.id.radio_color_2_4:
                                     touchedColor = "초록색";
                                     break;
-                                case R.id.radio_color5:
+                                case R.id.radio_color_2_5:
                                     touchedColor = "파란색";
                                     break;
-                                case R.id.radio_color6:
+                                case R.id.radio_color_2_6:
                                     touchedColor = "남색";
                                     break;
-                                case R.id.radio_color7:
+                                case R.id.radio_color_2_7:
                                     touchedColor = "보라색";
                                     break;
                             }

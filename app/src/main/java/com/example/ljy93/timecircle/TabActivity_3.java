@@ -85,66 +85,41 @@ public class TabActivity_3 extends Activity {
                 dlg.setView(dialogView);
                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        radioWeek = (RadioGroup) dialogView.findViewById(R.id.radioGroup);
-                        switch (radioWeek.getCheckedRadioButtonId()) {
-                            case R.id.rg_btn1:
-                                touchedWeek = "월요일";
-                                break;
-                            case R.id.rg_btn2:
-                                touchedWeek = "화요일";
-                                break;
-                            case R.id.rg_btn3:
-                                touchedWeek = "수요일";
-                                break;
-                            case R.id.rg_btn4:
-                                touchedWeek = "목요일";
-                                break;
-                            case R.id.rg_btn5:
-                                touchedWeek = "금요일";
-                                break;
-                            case R.id.rg_btn6:
-                                touchedWeek = "토요일";
-                                break;
-                            case R.id.rg_btn7:
-                                touchedWeek = "일요일";
-                                break;
-                        }
-                        edtTime1 = (EditText) dialogView.findViewById(R.id.selectTime1);
-                        edtTime2 = (EditText) dialogView.findViewById(R.id.selectTime2);
-                        edtTime3 = (EditText) dialogView.findViewById(R.id.selectTime3);
-                        edtTime4 = (EditText) dialogView.findViewById(R.id.selectTime4);
-                        edtName = (EditText) dialogView.findViewById(R.id.selectName);
-                        radioColor = (RadioGroup) dialogView.findViewById(R.id.radioGroup2);
+                        edtTime1 = (EditText) dialogView.findViewById(R.id.selectTime_3_1);
+                        edtTime2 = (EditText) dialogView.findViewById(R.id.selectTime_3_2);
+                        edtTime3 = (EditText) dialogView.findViewById(R.id.selectTime_3_3);
+                        edtTime4 = (EditText) dialogView.findViewById(R.id.selectTime_3_4);
+                        edtName = (EditText) dialogView.findViewById(R.id.selectName_3);
+                        radioColor = (RadioGroup) dialogView.findViewById(R.id.radioGroupColor_3);
                         switch (radioColor.getCheckedRadioButtonId()) {
-                            case R.id.radio_color1:
+                            case R.id.radio_color_3_1:
                                 touchedColor = "빨간색";
                                 break;
-                            case R.id.radio_color2:
+                            case R.id.radio_color_3_2:
                                 touchedColor = "주황색";
                                 break;
-                            case R.id.radio_color3:
+                            case R.id.radio_color_3_3:
                                 touchedColor = "노란색";
                                 break;
-                            case R.id.radio_color4:
+                            case R.id.radio_color_3_4:
                                 touchedColor = "초록색";
                                 break;
-                            case R.id.radio_color5:
+                            case R.id.radio_color_3_5:
                                 touchedColor = "파란색";
                                 break;
-                            case R.id.radio_color6:
+                            case R.id.radio_color_3_6:
                                 touchedColor = "남색";
                                 break;
-                            case R.id.radio_color7:
+                            case R.id.radio_color_3_7:
                                 touchedColor = "보라색";
                                 break;
                         }
 
-                        Toast.makeText(getApplicationContext(), "종료", Toast.LENGTH_SHORT).show();
-                        //Toast.makeText(getApplicationContext(), Integer.toString(Year) + "년 " + Integer.toString(Month) + "월 "
-                        //        + Integer.toString(Day) + "일" + edtTime1.getText().toString() + "시"
-                        //        + edtTime2.getText().toString() + "분부터 " + edtTime3.getText().toString() + "시"
-                        //        + edtTime4.getText().toString() + "분까지 " + touchedColor + "선택", Toast.LENGTH_SHORT).show();
-                        //Toast.makeText(getApplicationContext(), "일정 이름은 " + edtName.getText().toString() + "입니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), Integer.toString(Year) + "년 " + Integer.toString(Month) + "월 "
+                                + Integer.toString(Day) + "일" + edtTime1.getText().toString() + "시"
+                                + edtTime2.getText().toString() + "분부터 " + edtTime3.getText().toString() + "시"
+                                + edtTime4.getText().toString() + "분까지 " + touchedColor + "선택", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "일정 이름은 " + edtName.getText().toString() + "입니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
