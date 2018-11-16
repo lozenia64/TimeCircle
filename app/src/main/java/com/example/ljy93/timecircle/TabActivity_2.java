@@ -3,12 +3,12 @@ package com.example.ljy93.timecircle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class TabActivity_2 extends Activity {
@@ -44,6 +44,7 @@ public class TabActivity_2 extends Activity {
     View dialogView;
     EditText edtName, edtTime1, edtTime2, edtTime3, edtTime4;
     RadioGroup radioWeek, radioColor;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,10 +121,23 @@ public class TabActivity_2 extends Activity {
                                     break;
                             }
 
+                            String day = touchedWeek;
+                            String stime = edtTime1.getText().toString()+""+edtTime2.getText().toString();
+                            String etime = edtTime3.getText().toString()+""+edtTime4.getText().toString();
+                            String name = edtName.getText().toString();
+                            String color = touchedColor;
+                            DbHandler2 dbHandler = new DbHandler2(TabActivity_2.this);
+                            dbHandler.insertUserDetails(day,stime,etime,name,color);
+                            //intent = new Intent(TabActivity_2.this,Detail.class);
+                            //startActivity(intent);
+                            Toast.makeText(getApplicationContext(), "일정을 저장했어요!",Toast.LENGTH_SHORT).show();
+
+                            /*
                             Toast.makeText(getApplicationContext(), touchedWeek + " " + edtTime1.getText().toString() + "시"
                                     + edtTime2.getText().toString() + "분부터 " + edtTime3.getText().toString() + "시"
                                     + edtTime4.getText().toString() + "분까지 " + touchedColor + "선택", Toast.LENGTH_SHORT).show();
                             Toast.makeText(getApplicationContext(), "일정 이름은 " + edtName.getText().toString() + "입니다.", Toast.LENGTH_SHORT).show();
+                            */
                         }
                     });
                     dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {

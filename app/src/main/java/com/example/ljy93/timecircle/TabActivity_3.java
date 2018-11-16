@@ -34,8 +34,8 @@ public class TabActivity_3 extends Activity {
     String time;
     View dialogView;
     EditText edtName, edtTime1, edtTime2, edtTime3, edtTime4;
-    RadioGroup radioWeek, radioColor;
-    String touchedWeek, touchedColor;
+    RadioGroup radioColor;
+    String touchedColor;
 
     private final  OneDayDecorator  oneDayDecorator = new OneDayDecorator();
     MaterialCalendarView materialCalendarView;
@@ -115,11 +115,21 @@ public class TabActivity_3 extends Activity {
                                 break;
                         }
 
+                        String date = Integer.toString(Year)+""+Integer.toString(Month)+""+Integer.toString(Day);
+                        String stime = edtTime1.getText().toString()+""+edtTime2.getText().toString();
+                        String etime = edtTime3.getText().toString()+""+edtTime4.getText().toString();
+                        String name = edtName.getText().toString();
+                        String color = touchedColor;
+                        DbHandler3 dbHandler = new DbHandler3(TabActivity_3.this);
+                        dbHandler.insertUserDetails(date,stime,etime,name,color);
+                        Toast.makeText(getApplicationContext(), "일정을 저장했어요!",Toast.LENGTH_SHORT).show();
+                        /*
                         Toast.makeText(getApplicationContext(), Integer.toString(Year) + "년 " + Integer.toString(Month) + "월 "
                                 + Integer.toString(Day) + "일" + edtTime1.getText().toString() + "시"
                                 + edtTime2.getText().toString() + "분부터 " + edtTime3.getText().toString() + "시"
                                 + edtTime4.getText().toString() + "분까지 " + touchedColor + "선택", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "일정 이름은 " + edtName.getText().toString() + "입니다.", Toast.LENGTH_SHORT).show();
+                        */
                     }
                 });
                 dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
