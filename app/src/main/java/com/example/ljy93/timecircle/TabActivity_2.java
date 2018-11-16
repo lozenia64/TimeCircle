@@ -127,9 +127,8 @@ public class TabActivity_2 extends Activity {
                             String name = edtName.getText().toString();
                             String color = touchedColor;
                             DbHandler2 dbHandler = new DbHandler2(TabActivity_2.this);
+                            //DB에 추가
                             dbHandler.insertUserDetails(day,stime,etime,name,color);
-                            //intent = new Intent(TabActivity_2.this,Detail.class);
-                            //startActivity(intent);
                             Toast.makeText(getApplicationContext(), "일정을 저장했어요!",Toast.LENGTH_SHORT).show();
 
                             /*

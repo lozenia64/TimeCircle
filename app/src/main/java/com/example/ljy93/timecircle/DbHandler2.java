@@ -38,6 +38,7 @@ public class DbHandler2 extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEEK);
         onCreate(db);
     }
+    // 추가
     void insertUserDetails(String day, String startTime, String endTime, String name, String color){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cValues = new ContentValues();
@@ -66,7 +67,7 @@ public class DbHandler2 extends SQLiteOpenHelper {
         }
         return  userList;
     }
-    // Get User Details based on userid
+    // 읽기
     public ArrayList<HashMap<String, String>> GetUserByUserId(int userid){
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> userList = new ArrayList<>();
@@ -81,7 +82,7 @@ public class DbHandler2 extends SQLiteOpenHelper {
             user.put("color",cursor.getString(cursor.getColumnIndex(KEY_COLOR)));
             userList.add(user);
         }
-        return  userList;
+        return userList;
     }
     // Delete User Details
     public void DeleteUser(int userid){
