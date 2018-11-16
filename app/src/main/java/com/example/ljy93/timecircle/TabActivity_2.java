@@ -8,8 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TabActivity_2 extends Activity {
     String touchedBtn, subBtn, touchedWeek, touchedColor;
@@ -51,10 +57,17 @@ public class TabActivity_2 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_activity_2);
 
+        DbHandler2 db = new DbHandler2(this);
+        ArrayList<HashMap<String, String>> userList = db.GetUsers();
+        //DB에 저장되어있던 데이터 확인
+        //System.out.println(userList.size());
+        //for(i = 0; i<userList.size(); i++) System.out.println(userList.get(i));
+
         for (i = 0; i < numBtnIDs.length; i++) numButtons[i] = (Button) findViewById(numBtnIDs[i]);
         for (i = 0; i < numBtnIDs.length; i++) {
             final int index;
             index = i;
+
 
             numButtons[index].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
