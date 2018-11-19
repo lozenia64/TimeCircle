@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ljy93.timecircle.decorators.SaturdayDecorator;
-/*import com.example.ljy93.timecircle.decorators.EventDecorator; */
+import com.example.ljy93.timecircle.decorators.EventDecorator;
 import com.example.ljy93.timecircle.decorators.OneDayDecorator;
 import com.example.ljy93.timecircle.decorators.SaturdayDecorator;
 import com.example.ljy93.timecircle.decorators.SundayDecorator;
@@ -158,6 +158,8 @@ public class TabActivity_3 extends Activity {
 
             Calendar calendar = Calendar.getInstance();
             ArrayList<CalendarDay> dates = new ArrayList<>();
+
+
 
             /*특정날짜 달력에 점표시해주는곳*/
             /*월은 0이 1월 년,일은 그대로*/
