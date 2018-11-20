@@ -63,7 +63,7 @@ public class TabActivity_3 extends Activity {
 
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+            public void onDateSelected(@NonNull final MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 final int Year = date.getYear();
                 final int Month = date.getMonth() + 1;
                 final int Day = date.getDay();
@@ -122,6 +122,7 @@ public class TabActivity_3 extends Activity {
                         String color = touchedColor;
                         DbHandler3 dbHandler = new DbHandler3(TabActivity_3.this);
                         dbHandler.insertUserDetails(date,stime,etime,name,color);
+
                         Toast.makeText(getApplicationContext(), "일정을 저장했어요!",Toast.LENGTH_SHORT).show();
                         /*
                         Toast.makeText(getApplicationContext(), Integer.toString(Year) + "년 " + Integer.toString(Month) + "월 "
@@ -130,6 +131,7 @@ public class TabActivity_3 extends Activity {
                                 + edtTime4.getText().toString() + "분까지 " + touchedColor + "선택", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "일정 이름은 " + edtName.getText().toString() + "입니다.", Toast.LENGTH_SHORT).show();
                         */
+
                     }
                 });
                 dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -156,6 +158,7 @@ public class TabActivity_3 extends Activity {
                 e.printStackTrace();
             }
 
+
             Calendar calendar = Calendar.getInstance();
             ArrayList<CalendarDay> dates = new ArrayList<>();
 
@@ -176,5 +179,18 @@ public class TabActivity_3 extends Activity {
             }
             return dates;
         }
+
+        @Override
+        protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
+            super.onPostExecute(calendarDays);
+
+            if (isFinishing()) {
+                return;
+            }
+
+            materialCalendarView.addDecorator(new EventDecorator(Color.RED, calendarDays));
+        }
     }
+
+}
 }
