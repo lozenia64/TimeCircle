@@ -35,5 +35,9 @@ public class MainActivity extends TabActivity {
         TabHostWindow.addTab(TabMenu1);
         TabHostWindow.addTab(TabMenu2);
         TabHostWindow.addTab(TabMenu3);
+
+        Intent intent = getIntent();
+        String strr = intent.getStringExtra("goto3");
+        if(strr != null) TabHostWindow.setCurrentTab(2);
     }
 }
