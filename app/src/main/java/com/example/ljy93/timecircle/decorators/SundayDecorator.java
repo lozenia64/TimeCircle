@@ -9,9 +9,7 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
 import java.util.Calendar;
 
-/**
- * Created by samsung on 2017-04-12.
- */
+// Created by TaeSeok on 2018-11-19.
 
 public class SundayDecorator implements DayViewDecorator {
 

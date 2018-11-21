@@ -8,10 +8,8 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
 import java.util.Calendar;
-/**
- * Created by TaeSeok on 2018-11-03.
- */
 
+// Created by TaeSeok on 2018-11-19.
 
 public class SaturdayDecorator implements DayViewDecorator {
 

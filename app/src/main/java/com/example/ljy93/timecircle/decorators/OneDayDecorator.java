@@ -13,9 +13,9 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.util.Date;
 
-/**
- * Decorate a day by making the text big and bold
- */
+// Created by TaeSeok on 2018-11-19.
+// Decorate a day by making the text big and bold
+
 public class OneDayDecorator implements DayViewDecorator {
 
     private CalendarDay date;

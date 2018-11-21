@@ -1,9 +1,5 @@
 package com.example.ljy93.timecircle.decorators;
 
-/**
- * Created by TaeSeok on 2018-11-19.
- */
-
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 
@@ -16,9 +12,9 @@ import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
- * Decorate several days with a dot
- */
+// Created by TaeSeok on 2018-11-19.
+// Decorate several days with a dot
+
 public class EventDecorator implements DayViewDecorator {
 
     private final Drawable drawable;
