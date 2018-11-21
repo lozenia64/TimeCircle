@@ -25,11 +25,11 @@ public class MainActivity extends TabActivity {
         TabSpec TabMenu2 = TabHostWindow.newTabSpec("Second Tab");
         TabSpec TabMenu3 = TabHostWindow.newTabSpec("Third Tab");
 
-        TabMenu1.setIndicator("DAY");
+        TabMenu1.setIndicator("TODAY");
         TabMenu1.setContent(new Intent(this,TabActivity_1.class));
         TabMenu2.setIndicator("WEEK");
         TabMenu2.setContent(new Intent(this,TabActivity_2.class));
-        TabMenu3.setIndicator("MONTH");
+        TabMenu3.setIndicator("FUTURE");
         TabMenu3.setContent(new Intent(this,TabActivity_3.class));
 
         TabHostWindow.addTab(TabMenu1);
