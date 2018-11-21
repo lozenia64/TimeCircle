@@ -52,10 +52,11 @@ public class DbHandler3 extends SQLiteOpenHelper {
     public ArrayList<HashMap<String, String>> GetUsers(){
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> userList = new ArrayList<>();
-        String query = "SELECT date, startTime, endTime, name, color FROM "+ TABLE_MONTH;
+        String query = "SELECT id, date, startTime, endTime, name, color FROM "+ TABLE_MONTH;
         Cursor cursor = db.rawQuery(query,null);
         while (cursor.moveToNext()){
             HashMap<String,String> user = new HashMap<>();
+            user.put("id",cursor.getString(cursor.getColumnIndex(KEY_ID)));
             user.put("date",cursor.getString(cursor.getColumnIndex(KEY_DATE)));
             user.put("startTime",cursor.getString(cursor.getColumnIndex(KEY_STIME)));
             user.put("endTime",cursor.getString(cursor.getColumnIndex(KEY_ETIME)));
