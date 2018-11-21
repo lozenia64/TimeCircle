@@ -27,6 +27,9 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -44,6 +47,10 @@ public class TabActivity_3 extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_activity_3);
+
+        DbHandler3 db = new DbHandler3(this);
+        ArrayList<HashMap<String, String>> userList = db.GetUsers();
+
         materialCalendarView = (MaterialCalendarView)findViewById(R.id.calendarView);
         materialCalendarView.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
@@ -57,8 +64,17 @@ public class TabActivity_3 extends Activity {
                 new SaturdayDecorator(),
                 oneDayDecorator);
 
-        String[] result = {"2017,03,18","2017,04,18","2017,05,18","2017,06,18"};
-
+        //DB에 저장되어있던 데이터를 result에 저장.
+        List<String> result = new ArrayList<>();
+        for(int i = 0; i<userList.size(); i++) {
+            Collection<String> s = userList.get(i).values();
+            Iterator<String> it = s.iterator();
+            String subs = it.next();
+            result.add(subs);
+        }
+        //ApiSimulator에서 점을 찍어줄 때 마지막 날짜가 무시됨.. 따라서 선택되지 않을 날짜 1개를 마지막에 추가
+        result.add("20170101");
+        //ApiSimulator에서 점찍기
         new ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor());
 
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
@@ -68,16 +84,9 @@ public class TabActivity_3 extends Activity {
                 final int Month = date.getMonth() + 1;
                 final int Day = date.getDay();
 
-                Log.i("Year test", Year + "");
-                Log.i("Month test", Month + "");
-                Log.i("Day test", Day + "");
-
                 String shot_Day = Year + "." + Month + "." + Day;
 
-                Log.i("shot_Day test", shot_Day + "");
                 materialCalendarView.clearSelection();
-
-                //Toast.makeText(getApplicationContext(), shot_Day , Toast.LENGTH_SHORT).show();
 
                 dialogView = (View) View.inflate(TabActivity_3.this, R.layout.activity3_timeselect, null);
                 AlertDialog.Builder dlg = new AlertDialog.Builder(TabActivity_3.this);
@@ -91,47 +100,51 @@ public class TabActivity_3 extends Activity {
                         edtTime4 = (EditText) dialogView.findViewById(R.id.selectTime_3_4);
                         edtName = (EditText) dialogView.findViewById(R.id.selectName_3);
                         radioColor = (RadioGroup) dialogView.findViewById(R.id.radioGroupColor_3);
-                        switch (radioColor.getCheckedRadioButtonId()) {
-                            case R.id.radio_color_3_1:
-                                touchedColor = "빨간색";
-                                break;
-                            case R.id.radio_color_3_2:
-                                touchedColor = "주황색";
-                                break;
-                            case R.id.radio_color_3_3:
-                                touchedColor = "노란색";
-                                break;
-                            case R.id.radio_color_3_4:
-                                touchedColor = "초록색";
-                                break;
-                            case R.id.radio_color_3_5:
-                                touchedColor = "파란색";
-                                break;
-                            case R.id.radio_color_3_6:
-                                touchedColor = "남색";
-                                break;
-                            case R.id.radio_color_3_7:
-                                touchedColor = "보라색";
-                                break;
+
+                        int T1 = Integer.parseInt(edtTime1.getText().toString());
+                        int T2 = Integer.parseInt(edtTime2.getText().toString());
+                        int T3 = Integer.parseInt(edtTime3.getText().toString());
+                        int T4 = Integer.parseInt(edtTime4.getText().toString());
+
+                        //입력오류일 경우 예외처리
+                        if (T1 < 0 || T3 < 0 || T1 > 23 || T3 > 23) Toast.makeText(getApplicationContext(), "시간은 0~23사이로 입력해주세요!",Toast.LENGTH_SHORT).show();
+                        else if (T2 < 0 || T4 < 0 || T2 > 60 || T4 > 60) Toast.makeText(getApplicationContext(), "분은 0~59사이로 입력해주세요!",Toast.LENGTH_SHORT).show();
+                        else{
+                            switch (radioColor.getCheckedRadioButtonId()) {
+                                case R.id.radio_color_3_1:
+                                    touchedColor = "빨간색";
+                                    break;
+                                case R.id.radio_color_3_2:
+                                    touchedColor = "주황색";
+                                    break;
+                                case R.id.radio_color_3_3:
+                                    touchedColor = "노란색";
+                                    break;
+                                case R.id.radio_color_3_4:
+                                    touchedColor = "초록색";
+                                    break;
+                                case R.id.radio_color_3_5:
+                                    touchedColor = "파란색";
+                                    break;
+                                case R.id.radio_color_3_6:
+                                    touchedColor = "남색";
+                                    break;
+                                case R.id.radio_color_3_7:
+                                    touchedColor = "보라색";
+                                    break;
+
+                            }
+
+                            String date = Integer.toString(Year)+""+Integer.toString(Month)+""+Integer.toString(Day);
+                            String stime = edtTime1.getText().toString()+""+edtTime2.getText().toString();
+                            String etime = edtTime3.getText().toString()+""+edtTime4.getText().toString();
+                            String name = edtName.getText().toString();
+                            String color = touchedColor;
+                            DbHandler3 dbHandler = new DbHandler3(TabActivity_3.this);
+                            dbHandler.insertUserDetails(date,stime,etime,name,color);
+
+                            Toast.makeText(getApplicationContext(), "일정을 저장했어요!",Toast.LENGTH_SHORT).show();
                         }
-
-                        String date = Integer.toString(Year)+""+Integer.toString(Month)+""+Integer.toString(Day);
-                        String stime = edtTime1.getText().toString()+""+edtTime2.getText().toString();
-                        String etime = edtTime3.getText().toString()+""+edtTime4.getText().toString();
-                        String name = edtName.getText().toString();
-                        String color = touchedColor;
-                        DbHandler3 dbHandler = new DbHandler3(TabActivity_3.this);
-                        dbHandler.insertUserDetails(date,stime,etime,name,color);
-
-                        Toast.makeText(getApplicationContext(), "일정을 저장했어요!",Toast.LENGTH_SHORT).show();
-                        /*
-                        Toast.makeText(getApplicationContext(), Integer.toString(Year) + "년 " + Integer.toString(Month) + "월 "
-                                + Integer.toString(Day) + "일" + edtTime1.getText().toString() + "시"
-                                + edtTime2.getText().toString() + "분부터 " + edtTime3.getText().toString() + "시"
-                                + edtTime4.getText().toString() + "분까지 " + touchedColor + "선택", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getApplicationContext(), "일정 이름은 " + edtName.getText().toString() + "입니다.", Toast.LENGTH_SHORT).show();
-                        */
-
                     }
                 });
                 dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -146,8 +159,8 @@ public class TabActivity_3 extends Activity {
 
 
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
-        String[] Time_Result;
-        ApiSimulator(String[] Time_Result){
+        List<String> Time_Result;
+        ApiSimulator(List<String> Time_Result){
             this.Time_Result = Time_Result;
         }
         @Override
@@ -157,23 +170,16 @@ public class TabActivity_3 extends Activity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-
             Calendar calendar = Calendar.getInstance();
             ArrayList<CalendarDay> dates = new ArrayList<>();
 
-
-
             /*특정날짜 달력에 점표시해주는곳*/
             /*월은 0이 1월 년,일은 그대로*/
-            //string 문자열인 Time_Result 을 받아와서 ,를 기준으로짜르고 string을 int 로 변환
-            for(int i = 0 ; i < Time_Result.length ; i ++){
+            for(int i = 0 ; i < Time_Result.size(); i ++){
                 CalendarDay day = CalendarDay.from(calendar);
-                String[] time = Time_Result[i].split(",");
-                int year = Integer.parseInt(time[0]);
-                int month = Integer.parseInt(time[1]);
-                int dayy = Integer.parseInt(time[2]);
-
+                int year = Integer.parseInt(Time_Result.get(i).substring(0,4));
+                int month = Integer.parseInt(Time_Result.get(i).substring(4,6));
+                int dayy = Integer.parseInt(Time_Result.get(i).substring(6,8));
                 dates.add(day);
                 calendar.set(year,month-1,dayy);
             }
@@ -183,13 +189,8 @@ public class TabActivity_3 extends Activity {
         @Override
         protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
             super.onPostExecute(calendarDays);
-
-            if (isFinishing()) {
-                return;
-            }
-
-            materialCalendarView.addDecorator(new EventDecorator(Color.RED, calendarDays));
+            if (isFinishing()) return;
+            materialCalendarView.addDecorator(new EventDecorator(Color.RED, calendarDays, TabActivity_3.this));
         }
     }
-
 }
