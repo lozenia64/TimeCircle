@@ -74,7 +74,6 @@ public class TabActivity_2 extends Activity {
             final int index;
             index = i;
 
-
             numButtons[index].setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     touchedBtn = numButtons[index].toString();
@@ -149,13 +148,6 @@ public class TabActivity_2 extends Activity {
                             //DB에 추가
                             dbHandler.insertUserDetails(day,stime,etime,name,color);
                             Toast.makeText(getApplicationContext(), "일정을 저장했어요!",Toast.LENGTH_SHORT).show();
-
-                            /*
-                            Toast.makeText(getApplicationContext(), touchedWeek + " " + edtTime1.getText().toString() + "시"
-                                    + edtTime2.getText().toString() + "분부터 " + edtTime3.getText().toString() + "시"
-                                    + edtTime4.getText().toString() + "분까지 " + touchedColor + "선택", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(getApplicationContext(), "일정 이름은 " + edtName.getText().toString() + "입니다.", Toast.LENGTH_SHORT).show();
-                            */
                         }
                     });
                     dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
