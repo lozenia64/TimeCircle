@@ -37,14 +37,13 @@ public class DbHandler3 extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MONTH);
         onCreate(db);
     }
-    void insertUserDetails(String date, String startTime, String endTime, String name, String color){
+    void insertUserDetails(String date, String startTime, String endTime, String name){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cValues = new ContentValues();
         cValues.put(KEY_DATE, date);
         cValues.put(KEY_STIME, startTime);
         cValues.put(KEY_ETIME, endTime);
         cValues.put(KEY_NAME, name);
-        cValues.put(KEY_COLOR, color);
         long newRowId = db.insert(TABLE_MONTH,null, cValues);
         db.close();
     }
@@ -66,39 +65,9 @@ public class DbHandler3 extends SQLiteOpenHelper {
         }
         return  userList;
     }
-    // Get User Details based on userid
-    public ArrayList<HashMap<String, String>> GetUserByUserId(int userid){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<HashMap<String, String>> userList = new ArrayList<>();
-        String query = "SELECT date, startTime, endTime, name, color FROM "+ TABLE_MONTH;
-        Cursor cursor = db.query(TABLE_MONTH, new String[]{KEY_DATE, KEY_STIME, KEY_ETIME, KEY_NAME, KEY_COLOR}, KEY_ID+ "=?",new String[]{String.valueOf(userid)},null, null, null, null);
-        if (cursor.moveToNext()){
-            HashMap<String,String> user = new HashMap<>();
-            user.put("date",cursor.getString(cursor.getColumnIndex(KEY_DATE)));
-            user.put("startTime",cursor.getString(cursor.getColumnIndex(KEY_STIME)));
-            user.put("endTime",cursor.getString(cursor.getColumnIndex(KEY_ETIME)));
-            user.put("name",cursor.getString(cursor.getColumnIndex(KEY_NAME)));
-            user.put("color",cursor.getString(cursor.getColumnIndex(KEY_COLOR)));
-            userList.add(user);
-        }
-        return  userList;
-    }
     // Delete User Details
     public void DeleteUser(int userid){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_MONTH, KEY_ID+" = ?",new String[]{String.valueOf(userid)});
         db.close();
-    }
-    // Update User Details
-    public int UpdateUserDetails(String date, String startTime, String endTime, String name, String color, int id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cVals = new ContentValues();
-        cVals.put(KEY_DATE, date);
-        cVals.put(KEY_STIME, startTime);
-        cVals.put(KEY_ETIME, endTime);
-        cVals.put(KEY_NAME, name);
-        cVals.put(KEY_COLOR, color);
-        int count = db.update(TABLE_MONTH, cVals, KEY_ID+" = ?",new String[]{String.valueOf(id)});
-        return  count;
-    }
-}
+    }}
