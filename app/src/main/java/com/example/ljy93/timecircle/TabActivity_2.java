@@ -52,11 +52,9 @@ public class TabActivity_2 extends Activity {
     };
     int i;
     View dialogView;
-    EditText edtName, edtTime1, edtTime2, edtTime3, edtTime4;
+    EditText edtName, edtTime1, edtTime2;
     RadioGroup radioWeek, radioColor;
     Intent intent;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +109,6 @@ public class TabActivity_2 extends Activity {
                             }
                             edtTime1 = (EditText) dialogView.findViewById(R.id.selectTime_2_1);
                             edtTime2 = (EditText) dialogView.findViewById(R.id.selectTime_2_2);
-                            edtTime3 = (EditText) dialogView.findViewById(R.id.selectTime_2_3);
-                            edtTime4 = (EditText) dialogView.findViewById(R.id.selectTime_2_4);
                             edtName = (EditText) dialogView.findViewById(R.id.selectName_2);
                             radioColor = (RadioGroup) dialogView.findViewById(R.id.radioGroupColor_2);
                             switch (radioColor.getCheckedRadioButtonId()){
@@ -140,8 +136,8 @@ public class TabActivity_2 extends Activity {
                             }
 
                             String day = touchedWeek;
-                            String stime = edtTime1.getText().toString()+""+edtTime2.getText().toString();
-                            String etime = edtTime3.getText().toString()+""+edtTime4.getText().toString();
+                            String stime = edtTime1.getText().toString();
+                            String etime = edtTime2.getText().toString();
                             String name = edtName.getText().toString();
                             String color = touchedColor;
                             DbHandler2 dbHandler = new DbHandler2(TabActivity_2.this);
