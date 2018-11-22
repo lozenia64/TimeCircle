@@ -1,4 +1,4 @@
-package com.example.ljy93.timecircle;
+package com.ljy93.timecircle;
 
 import org.junit.Test;
 

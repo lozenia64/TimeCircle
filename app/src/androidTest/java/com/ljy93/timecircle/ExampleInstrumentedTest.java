@@ -1,4 +1,4 @@
-package com.example.ljy93.timecircle;
+package com.ljy93.timecircle;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.ljy93.timecircle", appContext.getPackageName());
+        assertEquals("com.ljy93.timecircle", appContext.getPackageName());
     }
 }
