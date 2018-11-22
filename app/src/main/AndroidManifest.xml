@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ljy93.timecircle">
+    package="com.ljy93.timecircle">
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -20,6 +20,11 @@
         <activity android:name=".TabActivity_2"/>
         <activity android:name=".TabActivity_3"/>
         <activity android:name=".DetailsActivity"/>
+        <activity android:name=".timeselect2"/>
+        <activity android:name=".delete2"/>
+        <activity android:name=".delete1"/>
+
+        <service android:name=".Myservice"/>
     </application>
 
 </manifest>
