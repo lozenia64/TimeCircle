@@ -54,7 +54,10 @@ public class timeselect2 extends AppCompatActivity {
         for (int i = 0; i < numBtnIDs.length; i++) numButtons[i] = (Button) findViewById(numBtnIDs[i]);
 
         radioWeek = (RadioGroup) findViewById(R.id.radioGroupWeek_2);
+        radioColor = (RadioGroup) findViewById(R.id.radioGroupColor_2);
         et1 = (EditText)findViewById(R.id.selectTime_2_1);
+        et2 = (EditText) findViewById(R.id.selectTime_2_2);
+        et3 = (EditText) findViewById(R.id.selectName_2);
 
         intent = getIntent();
         String strA = intent.getStringExtra("A");
@@ -68,12 +71,21 @@ public class timeselect2 extends AppCompatActivity {
         else if(strB.equals("Fri")) radioWeek.check(R.id.radio_week_2_5);
         else if(strB.equals("Sat")) radioWeek.check(R.id.radio_week_2_6);
         else if(strB.equals("Son")) radioWeek.check(R.id.radio_week_2_7);
-        et1.setText(strC);
+        radioColor.check(R.id.radio_color_2_1);
+
+        int C1 = Integer.parseInt(strC);
+        int C2 = Integer.parseInt(strC)+1;
+        et1.setText(C1+"");
+        et2.setText(C2+"");
+        et3.setHint("일정 이름을 입력해주세요.");
 
         btnB = (Button)findViewById(R.id.btnBack2);
         btnB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("goto2", "goto2");
+                startActivity(intent);
                 finish();
             }
         });
@@ -82,9 +94,6 @@ public class timeselect2 extends AppCompatActivity {
         btnS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                et2 = (EditText) findViewById(R.id.selectTime_2_2);
-                et3 = (EditText) findViewById(R.id.selectName_2);
-                radioColor = (RadioGroup) findViewById(R.id.radioGroupColor_2);
                 switch (radioWeek.getCheckedRadioButtonId()) {
                     case R.id.radio_week_2_1:
                         touchedWeek = "월요일";
@@ -138,21 +147,29 @@ public class timeselect2 extends AppCompatActivity {
                 String name = et3.getText().toString();
                 String color = touchedColor;
 
-                int Stime = Integer.parseInt(stime);
-                int Etime = Integer.parseInt(etime);
-                if (Stime > 24 || Stime < 0 || Etime < 0 || Etime > 24) Toast.makeText(getApplicationContext(), "시간은 0~24사이의 값을 입력해주세요!", Toast.LENGTH_SHORT).show();
-                else {
-                    DbHandler1 dbHandler1 = new DbHandler1(timeselect2.this);
-                    DbHandler2 dbHandler = new DbHandler2(timeselect2.this);
-                    //DB에 추가
-                    dbHandler.insertUserDetails(day, stime, etime, name, color);
-                    dbHandler1.insertUserDetails(day, stime, etime, name);
-                    Toast.makeText(getApplicationContext(), "일정을 저장했어요!", Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("goto2", "goto2");
-                    startActivity(intent);
-                    finish();
+                try {
+                    int Stime = Integer.parseInt(stime);
+                    int Etime = Integer.parseInt(etime);
+                    if (Stime > 24 || Stime < 0 || Etime < 0 || Etime > 24)
+                        Toast.makeText(getApplicationContext(), "시간은 0~24사이의 값을 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    else if (Stime >= Etime)
+                        Toast.makeText(getApplicationContext(), "시작시간이 종료시간보다 작아야해요!", Toast.LENGTH_SHORT).show();
+                    else {
+                        DbHandler1 dbHandler1 = new DbHandler1(timeselect2.this);
+                        DbHandler2 dbHandler = new DbHandler2(timeselect2.this);
+                        //DB에 추가
+                        dbHandler.insertUserDetails(day, stime, etime, name, color);
+                        dbHandler1.insertUserDetails(day, stime, etime, name);
+                        Toast.makeText(getApplicationContext(), "일정을 저장했어요!", Toast.LENGTH_SHORT).show();
+                        //돌아가기
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("goto2", "goto2");
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+                catch (NumberFormatException e) {
+                    Toast.makeText(getApplicationContext(), "시간에는 숫자만 입력해주세요!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

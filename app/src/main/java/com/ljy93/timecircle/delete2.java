@@ -37,8 +37,8 @@ public class delete2 extends AppCompatActivity {
         deleteB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final DbHandler1 dbHandler1 = new DbHandler1(delete2.this);
                 final DbHandler2 dbHandler = new DbHandler2(delete2.this);
-                ArrayList<HashMap<String, String>> userList = dbHandler.GetUsers();
 
                 dialogView = (View) View.inflate(delete2.this, R.layout.dialog3d, null);
                 AlertDialog.Builder dlg = new AlertDialog.Builder(delete2.this);
@@ -47,8 +47,9 @@ public class delete2 extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         editT = (EditText)dialogView.findViewById(R.id.dlgEdt1);
                         dNum = Integer.parseInt(editT.getText().toString());
+                        final ArrayList<HashMap<String, String>> userList = dbHandler.GetUserByUserId(dNum);
                         dbHandler.DeleteUser(dNum);
-
+                        dbHandler1.DeleteUser1(userList.get(0).get("day"), userList.get(0).get("startTime"), userList.get(0).get("endTime"));
                         Intent intent = getIntent();
                         finish();
                         startActivity(intent);
@@ -67,6 +68,9 @@ public class delete2 extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("goto2", "goto2");
+                startActivity(intent);
                 finish();
             }
         });
