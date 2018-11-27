@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 import com.ljy93.timecircle.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class TabActivity_3 extends AppCompatActivity {
     Button sbtn3;
     EditText dateY, dateM, dateD, time1, time2, name3;
@@ -28,6 +32,11 @@ public class TabActivity_3 extends AppCompatActivity {
         setContentView(R.layout.activity_tab_activity_3);
         setTitle("추후 일정");
 
+        long time = System.currentTimeMillis();
+        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd-hh");
+        String str = dayTime.format(new Date(time));
+        String arr[] = str.split("-");
+
         sbtn3 = (Button)findViewById(R.id.saveBtn3);
         dateY = (EditText)findViewById(R.id.selectDate_3_1);
         dateM = (EditText)findViewById(R.id.selectDate_3_2);
@@ -35,6 +44,14 @@ public class TabActivity_3 extends AppCompatActivity {
         time1 = (EditText)findViewById(R.id.selectTime_3_1);
         time2 = (EditText)findViewById(R.id.selectTime_3_2);
         name3 = (EditText)findViewById(R.id.selectName_3);
+
+        dateY.setHint(arr[0]);
+        dateM.setHint(arr[1]);
+        dateD.setHint(arr[2]);
+        time1.setHint(arr[3]);
+        int t = Integer.parseInt(arr[3])+1;
+        time2.setHint(t+"");
+        name3.setHint("일정 이름을 입력해주세요.");
 
         sbtn3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +79,7 @@ public class TabActivity_3 extends AppCompatActivity {
                     else if (intM > 12 || intM < 1) Toast.makeText(getApplicationContext(), "월은 1~12사이의 값을 입력해주세요!", Toast.LENGTH_SHORT).show();
                     else if (intD > 31 || intD < 1) Toast.makeText(getApplicationContext(), "일은 1~31사이의 값을 입력해주세요!", Toast.LENGTH_SHORT).show();
                     else if (Stime > 23 || Stime < 0 || Etime < 0 || Etime > 23) Toast.makeText(getApplicationContext(), "시간은 0~23사이의 값을 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    else if (Stime >= Etime) Toast.makeText(getApplicationContext(), "시작시간이 종료시간보다 작아야해요!", Toast.LENGTH_SHORT).show();
                     else {
                         DbHandler1 dbHandler1 = new DbHandler1(TabActivity_3.this);
                         DbHandler3 dbHandler = new DbHandler3(TabActivity_3.this);

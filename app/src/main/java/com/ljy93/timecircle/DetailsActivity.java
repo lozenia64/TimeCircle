@@ -37,6 +37,7 @@ public class DetailsActivity extends AppCompatActivity {
         deleteB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final DbHandler1 dbHandler1 = new DbHandler1(DetailsActivity.this);
                 final DbHandler3 dbHandler = new DbHandler3(DetailsActivity.this);
                 ArrayList<HashMap<String, String>> userList = dbHandler.GetUsers();
 
@@ -47,7 +48,9 @@ public class DetailsActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         editT = (EditText)dialogView.findViewById(R.id.dlgEdt1);
                         dNum = Integer.parseInt(editT.getText().toString());
+                        final ArrayList<HashMap<String, String>> userList = dbHandler.GetUserByUserId(dNum);
                         dbHandler.DeleteUser(dNum);
+                        dbHandler1.DeleteUser1(userList.get(0).get("day"), userList.get(0).get("startTime"), userList.get(0).get("endTime"));
                         Intent intent = getIntent();
                         finish();
                         startActivity(intent);

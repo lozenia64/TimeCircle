@@ -65,6 +65,21 @@ public class DbHandler3 extends SQLiteOpenHelper {
         }
         return  userList;
     }
+    public ArrayList<HashMap<String, String>> GetUserByUserId(int userid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<HashMap<String, String>> userList = new ArrayList<>();
+        String query = "SELECT day, startTime, endTime, name FROM "+ TABLE_MONTH;
+        Cursor cursor = db.query(TABLE_MONTH, new String[]{KEY_DATE, KEY_STIME, KEY_ETIME, KEY_NAME}, KEY_ID+ "=?",new String[]{String.valueOf(userid)},null, null, null);
+        if (cursor.moveToNext()){
+            HashMap<String,String> user = new HashMap<>();
+            user.put("day",cursor.getString(cursor.getColumnIndex(KEY_DATE)));
+            user.put("startTime",cursor.getString(cursor.getColumnIndex(KEY_STIME)));
+            user.put("endTime",cursor.getString(cursor.getColumnIndex(KEY_ETIME)));
+            user.put("name",cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+            userList.add(user);
+        }
+        return userList;
+    }
     // Delete User Details
     public void DeleteUser(int userid){
         SQLiteDatabase db = this.getWritableDatabase();
