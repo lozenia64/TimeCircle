@@ -71,250 +71,31 @@ public class TabActivity_2 extends AppCompatActivity {
                 int intlastID = Integer.parseInt(userList.get(i).get("id"));
 
                 ArrayList<HashMap<String, String>> userLast = db.GetUserByUserId(intlastID);
-
+                System.out.println(userLast);
                 day = userLast.get(0).get("day");
                 color = userLast.get(0).get("color");
                 int a = Integer.parseInt(userLast.get(0).get("startTime"));
                 int b = Integer.parseInt(userLast.get(0).get("endTime"));
+                int c = 0;
 
-                if (day.equals("월요일")) {
-                    int c = a * 7 + 0;
-                    while (a < b) {
-                        if (color.equals("빨간색")) {
-                            numButtons[c].setBackgroundColor(Color.RED);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("노란색")) {
-                            numButtons[c].setBackgroundColor(Color.YELLOW);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("파란색")) {
-                            numButtons[c].setBackgroundColor(Color.BLUE);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("초록색")) {
-                            numButtons[c].setBackgroundColor(Color.GREEN);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("보라색")) {
-                            numButtons[c].setBackgroundResource(R.color.purple);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("주황색")) {
-                            numButtons[c].setBackgroundResource(R.color.orange);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("남색")) {
-                            numButtons[c].setBackgroundResource(R.color.darkblue);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        }
-                        a++;
-                    }
-                } else if (day.equals("화요일")) {
-                    int c = a * 7 + 1;
-                    while (a < b) {
-                        if (color.equals("빨간색")) {
-                            numButtons[c].setBackgroundColor(Color.RED);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("노란색")) {
-                            numButtons[c].setBackgroundColor(Color.YELLOW);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("파란색")) {
-                            numButtons[c].setBackgroundColor(Color.BLUE);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("초록색")) {
-                            numButtons[c].setBackgroundColor(Color.GREEN);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("보라색")) {
-                            numButtons[c].setBackgroundResource(R.color.purple);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("주황색")) {
-                            numButtons[c].setBackgroundResource(R.color.orange);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("남색")) {
-                            numButtons[c].setBackgroundResource(R.color.darkblue);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        }
-                        a++;
-                    }
-                } else if (day.equals("수요일")) {
-                    int c = a * 7 + 2;
-                    while (a < b) {
-                        if (color.equals("빨간색")) {
-                            numButtons[c].setBackgroundColor(Color.RED);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("노란색")) {
-                            numButtons[c].setBackgroundColor(Color.YELLOW);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("파란색")) {
-                            numButtons[c].setBackgroundColor(Color.BLUE);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("초록색")) {
-                            numButtons[c].setBackgroundColor(Color.GREEN);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("보라색")) {
-                            numButtons[c].setBackgroundResource(R.color.purple);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("주황색")) {
-                            numButtons[c].setBackgroundResource(R.color.orange);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("남색")) {
-                            numButtons[c].setBackgroundResource(R.color.darkblue);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        }
-                        a++;
-                    }
-                } else if (day.equals("목요일")) {
-                    int c = a * 7 + 3;
-                    while (a < b) {
-                        if (color.equals("빨간색")) {
-                            numButtons[c].setBackgroundColor(Color.RED);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("노란색")) {
-                            numButtons[c].setBackgroundColor(Color.YELLOW);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("파란색")) {
-                            numButtons[c].setBackgroundColor(Color.BLUE);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("초록색")) {
-                            numButtons[c].setBackgroundColor(Color.GREEN);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("보라색")) {
-                            numButtons[c].setBackgroundResource(R.color.purple);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("주황색")) {
-                            numButtons[c].setBackgroundResource(R.color.orange);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("남색")) {
-                            numButtons[c].setBackgroundResource(R.color.darkblue);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        }
-                        a++;
-                    }
-                } else if (day.equals("금요일")) {
-                    int c = a * 7 + 4;
-                    while (a < b) {
-                        if (color.equals("빨간색")) {
-                            numButtons[c].setBackgroundColor(Color.RED);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("노란색")) {
-                            numButtons[c].setBackgroundColor(Color.YELLOW);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("파란색")) {
-                            numButtons[c].setBackgroundColor(Color.BLUE);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("초록색")) {
-                            numButtons[c].setBackgroundColor(Color.GREEN);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("보라색")) {
-                            numButtons[c].setBackgroundResource(R.color.purple);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("주황색")) {
-                            numButtons[c].setBackgroundResource(R.color.orange);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("남색")) {
-                            numButtons[c].setBackgroundResource(R.color.darkblue);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        }
-                        a++;
-                    }
-                } else if (day.equals("토요일")) {
-                    int c = a * 7 + 5;
-                    while (a < b) {
-                        if (color.equals("빨간색")) {
-                            numButtons[c].setBackgroundColor(Color.RED);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("노란색")) {
-                            numButtons[c].setBackgroundColor(Color.YELLOW);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("파란색")) {
-                            numButtons[c].setBackgroundColor(Color.BLUE);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("초록색")) {
-                            numButtons[c].setBackgroundColor(Color.GREEN);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("보라색")) {
-                            numButtons[c].setBackgroundResource(R.color.purple);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("주황색")) {
-                            numButtons[c].setBackgroundResource(R.color.orange);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("남색")) {
-                            numButtons[c].setBackgroundResource(R.color.darkblue);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        }
-                        a++;
-                    }
-                } else if (day.equals("일요일")) {
-                    int c = a * 7 + 6;
-                    while (a < b) {
-                        if (color.equals("빨간색")) {
-                            numButtons[c].setBackgroundColor(Color.RED);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("노란색")) {
-                            numButtons[c].setBackgroundColor(Color.YELLOW);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("파란색")) {
-                            numButtons[c].setBackgroundColor(Color.BLUE);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("초록색")) {
-                            numButtons[c].setBackgroundColor(Color.GREEN);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("보라색")) {
-                            numButtons[c].setBackgroundResource(R.color.purple);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("주황색")) {
-                            numButtons[c].setBackgroundResource(R.color.orange);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        } else if (color.equals("남색")) {
-                            numButtons[c].setBackgroundResource(R.color.darkblue);
-                            numButtons[c].setClickable(false);
-                            c += 7;
-                        }
-                        a++;
-                    }
+                if (day.equals("월요일")) c = a * 7 + 0;
+                else if (day.equals("화요일")) c = a * 7 + 1;
+                else if (day.equals("수요일")) c = a * 7 + 2;
+                else if (day.equals("목요일")) c = a * 7 + 3;
+                else if (day.equals("금요일")) c = a * 7 + 4;
+                else if (day.equals("토요일")) c = a * 7 + 5;
+                else if (day.equals("일요일")) c = a * 7 + 6;
+
+                while (a < b) {
+                    if (color.equals("빨간색")) numButtons[c].setBackgroundColor(Color.RED);
+                    else if (color.equals("노란색")) numButtons[c].setBackgroundColor(Color.YELLOW);
+                    else if (color.equals("파란색")) numButtons[c].setBackgroundColor(Color.BLUE);
+                    else if (color.equals("초록색")) numButtons[c].setBackgroundColor(Color.GREEN);
+                    else if (color.equals("보라색")) numButtons[c].setBackgroundResource(R.color.purple);
+                    else if (color.equals("주황색")) numButtons[c].setBackgroundResource(R.color.orange);
+                    else if (color.equals("남색")) numButtons[c].setBackgroundResource(R.color.darkblue);
+                    c += 7;
+                    a++;
                 }
             }
         }
@@ -326,11 +107,84 @@ public class TabActivity_2 extends AppCompatActivity {
                 public void onClick(View v) {
                     touchedBtn = numButtons[index].toString();
                     subBtn = touchedBtn.substring(touchedBtn.length() - 6, touchedBtn.length() - 1);
+                    String strB = subBtn.substring(0,3);
+                    String strC = subBtn.substring(3,5);
+                    int IstrC = Integer.parseInt(strC);
+                    System.out.println(strB);
 
-                    intent = new Intent(getApplicationContext(), timeselect2.class);
-                    intent.putExtra("A", subBtn);
-                    startActivity(intent);
-                    finish();
+                    DbHandler2 db = new DbHandler2(getApplicationContext());
+                    ArrayList<HashMap<String, String>> ulist = db.GetUserByDay();
+                    int z = 0;
+
+                    if(strB.equals("Mon")){
+                        for(int j=0; j<ulist.size(); j++){
+                            if (ulist.get(j).get("day").equals("월요일")){
+                                int x = Integer.parseInt(ulist.get(j).get("startTime"));
+                                int y = Integer.parseInt(ulist.get(j).get("endTime"));
+                                if (x <= IstrC && IstrC < y) z++;
+                            }
+                        }
+                    }
+                    else if (strB.equals("Tue")){
+                        for(int j=0; j<ulist.size(); j++){
+                            if (ulist.get(j).get("day").equals("화요일")){
+                                int x = Integer.parseInt(ulist.get(j).get("startTime"));
+                                int y = Integer.parseInt(ulist.get(j).get("endTime"));
+                                if (x <= IstrC && IstrC < y) z++;
+                            }
+                        }
+                    }
+                    else if (strB.equals("Wed")){
+                        for(int j=0; j<ulist.size(); j++){
+                            if (ulist.get(j).get("day").equals("수요일")){
+                                int x = Integer.parseInt(ulist.get(j).get("startTime"));
+                                int y = Integer.parseInt(ulist.get(j).get("endTime"));
+                                if (x <= IstrC && IstrC < y) z++;
+                            }
+                        }
+                    }
+                    else if (strB.equals("Thu")){
+                        for(int j=0; j<ulist.size(); j++){
+                            if (ulist.get(j).get("day").equals("목요일")){
+                                int x = Integer.parseInt(ulist.get(j).get("startTime"));
+                                int y = Integer.parseInt(ulist.get(j).get("endTime"));
+                                if (x <= IstrC && IstrC < y) z++;
+                            }
+                        }
+                    }
+                    else if (strB.equals("Fri")){
+                        for(int j=0; j<ulist.size(); j++){
+                            if (ulist.get(j).get("day").equals("금요일")){
+                                int x = Integer.parseInt(ulist.get(j).get("startTime"));
+                                int y = Integer.parseInt(ulist.get(j).get("endTime"));
+                                if (x <= IstrC && IstrC < y) z++;
+                            }
+                        }
+                    }
+                    else if (strB.equals("Sat")){
+                        for(int j=0; j<ulist.size(); j++){
+                            if (ulist.get(j).get("day").equals("토요일")){
+                                int x = Integer.parseInt(ulist.get(j).get("startTime"));
+                                int y = Integer.parseInt(ulist.get(j).get("endTime"));
+                                if (x <= IstrC && IstrC < y) z++;
+                            }
+                        }
+                    }
+                    else if (strB.equals("Son")){
+                        for(int j=0; j<ulist.size(); j++){
+                            if (ulist.get(j).get("day").equals("일요일")){
+                                int x = Integer.parseInt(ulist.get(j).get("startTime"));
+                                int y = Integer.parseInt(ulist.get(j).get("endTime"));
+                                if (x <= IstrC && IstrC < y) z++;
+                            }
+                        }
+                    }
+                    if (z  == 0) {
+                        intent = new Intent(getApplicationContext(), timeselect2.class);
+                        intent.putExtra("A", subBtn);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             });
         }
@@ -357,6 +211,7 @@ public class TabActivity_2 extends AppCompatActivity {
             case 2:
                 Intent intent1 = new Intent(TabActivity_2.this,delete2.class);
                 startActivity(intent1);
+                finish();
                 return true;
         }
         return false;

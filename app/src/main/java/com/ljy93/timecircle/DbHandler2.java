@@ -97,7 +97,20 @@ public class DbHandler2 extends SQLiteOpenHelper {
         }
         return userList;
     }
-    // Delete User Details
+    public ArrayList<HashMap<String, String>> GetUserByDay(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<HashMap<String, String>> userList = new ArrayList<>();
+        String query = "SELECT day, startTime, endTime FROM "+ TABLE_WEEK;
+        Cursor cursor = db.rawQuery(query,null);
+        while (cursor.moveToNext()){
+            HashMap<String,String> user = new HashMap<>();
+            user.put("day",cursor.getString(cursor.getColumnIndex(KEY_DAY)));
+            user.put("startTime",cursor.getString(cursor.getColumnIndex(KEY_STIME)));
+            user.put("endTime",cursor.getString(cursor.getColumnIndex(KEY_ETIME)));
+            userList.add(user);
+        }
+        return  userList;
+    }    // Delete User Details
     public void DeleteUser(int userid){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_WEEK, KEY_ID+" = ?",new String[]{String.valueOf(userid)});
