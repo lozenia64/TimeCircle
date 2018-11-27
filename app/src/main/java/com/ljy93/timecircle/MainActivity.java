@@ -46,6 +46,5 @@ public class MainActivity extends TabActivity {
         if(str1 != null) TabHostWindow.setCurrentTab(0);
         if(str2 != null) TabHostWindow.setCurrentTab(1);
         if(str3 != null) TabHostWindow.setCurrentTab(2);
-
     }
 }
