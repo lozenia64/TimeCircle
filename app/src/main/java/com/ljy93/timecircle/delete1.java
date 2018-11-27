@@ -48,6 +48,7 @@ public class delete1 extends AppCompatActivity {
                         editT = (EditText)dialogView.findViewById(R.id.dlgEdt1);
                         dNum = Integer.parseInt(editT.getText().toString());
                         dbHandler.DeleteUser(dNum);
+
                         Intent intent = getIntent();
                         finish();
                         startActivity(intent);
@@ -66,6 +67,9 @@ public class delete1 extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("goto1", "goto1");
+                startActivity(intent);
                 finish();
             }
         });

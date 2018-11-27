@@ -98,6 +98,12 @@ public class DbHandler1 extends SQLiteOpenHelper {
         db.delete(TABLE_DAY, KEY_ID+" = ?",new String[]{String.valueOf(userid)});
         db.close();
     }
+    //DB1도 함께 삭제
+    public void DeleteUser1(String day, String startTime, String endTime ){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_DAY, KEY_DAY+" = ? AND "+KEY_STIME+" = ? AND "+KEY_ETIME+" = ?",new String[]{String.valueOf(day), String.valueOf(startTime), String.valueOf(endTime)});
+        db.close();
+    }
     // Update User Details
     public int UpdateUserDetails(String day, String startTime, String endTime, String name, int id){
         SQLiteDatabase db = this.getWritableDatabase();

@@ -22,7 +22,6 @@ public class TabActivity_1 extends AppCompatActivity {
         setContentView(R.layout.activity_tab_activity_1);
         setTitle("오늘의 일정");
 
-
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH)+1;
@@ -93,6 +92,7 @@ public class TabActivity_1 extends AppCompatActivity {
             case 2:
                 Intent myIntent5 = new Intent(TabActivity_1.this,delete1.class);
                 startActivity(myIntent5);
+                finish();
                 return true;
             case 3:
                 Intent myIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.weather.naver.com/m/nation.nhn"));
