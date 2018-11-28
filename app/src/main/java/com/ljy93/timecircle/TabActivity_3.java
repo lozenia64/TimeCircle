@@ -83,11 +83,28 @@ public class TabActivity_3 extends AppCompatActivity {
                     else {
                         DbHandler1 dbHandler1 = new DbHandler1(TabActivity_3.this);
                         DbHandler3 dbHandler = new DbHandler3(TabActivity_3.this);
-                        dbHandler.insertUserDetails(date,startTime,endTime,name);
-                        dbHandler1.insertUserDetails(date,startTime,endTime,name);
+
+                        if (Stime < 10 && Etime < 10) {
+                            dbHandler.insertUserDetails(date,"0"+startTime,"0"+endTime,name);
+                            dbHandler1.insertUserDetails(date,"0"+startTime,"0"+endTime,name);
+                        }
+                        else if (Stime < 10) {
+                            dbHandler.insertUserDetails(date,"0"+startTime,endTime,name);
+                            dbHandler1.insertUserDetails(date,"0"+startTime,endTime,name);
+                        }
+                        else if (Etime < 10) {
+                            dbHandler.insertUserDetails(date,startTime,"0"+endTime,name);
+                            dbHandler1.insertUserDetails(date,startTime,"0"+endTime,name);
+                        }
+                        else {
+                            dbHandler.insertUserDetails(date,startTime,endTime,name);
+                            dbHandler1.insertUserDetails(date,startTime,endTime,name);
+                        }
+
                         Toast.makeText(getApplicationContext(), "저장", Toast.LENGTH_SHORT).show();
                         intent = new Intent(TabActivity_3.this,DetailsActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 }
                 catch (NumberFormatException e) {
@@ -96,4 +113,25 @@ public class TabActivity_3 extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        menu.add(0, 1, 0, "일정삭제");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 1:
+                Intent intent1 = new Intent(TabActivity_3.this,DetailsActivity.class);
+                startActivity(intent1);
+                finish();
+                return true;
+        }
+        return false;
+    }
+
 }

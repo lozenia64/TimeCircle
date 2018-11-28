@@ -69,6 +69,9 @@ public class DetailsActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("goto3", "goto3");
+                startActivity(intent);
                 finish();
             }
         });
