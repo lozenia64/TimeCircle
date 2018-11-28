@@ -51,7 +51,7 @@ public class DbHandler1 extends SQLiteOpenHelper {
     public ArrayList<HashMap<String, String>> GetUsers(){
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> userList = new ArrayList<>();
-        String query = "SELECT id, day, startTime, endTime, name FROM "+ TABLE_DAY;
+        String query = "SELECT id, day, startTime, endTime, name FROM "+ TABLE_DAY + " ORDER BY " + KEY_STIME;
         Cursor cursor = db.rawQuery(query,null);
         while (cursor.moveToNext()){
             HashMap<String,String> user = new HashMap<>();
@@ -63,34 +63,6 @@ public class DbHandler1 extends SQLiteOpenHelper {
             userList.add(user);
         }
         return  userList;
-    }
-    public ArrayList<HashMap<String, String>> GetUsersid(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<HashMap<String, String>> userList = new ArrayList<>();
-        String query = "SELECT id FROM "+ TABLE_DAY+" ORDER BY id DESC";
-        Cursor cursor = db.rawQuery(query,null);
-        while (cursor.moveToNext()){
-            HashMap<String,String> user = new HashMap<>();
-            user.put("id",cursor.getString(cursor.getColumnIndex(KEY_ID)));
-            userList.add(user);
-        }
-        return  userList;
-    }
-    // 읽기
-    public ArrayList<HashMap<String, String>> GetUserByUserId(int userid){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<HashMap<String, String>> userList = new ArrayList<>();
-        String query = "SELECT day, startTime, endTime, name FROM "+ TABLE_DAY;
-        Cursor cursor = db.query(TABLE_DAY, new String[]{KEY_DAY, KEY_STIME, KEY_ETIME, KEY_NAME}, KEY_ID+ "=?",new String[]{String.valueOf(userid)},null, null, null, null);
-        if (cursor.moveToNext()){
-            HashMap<String,String> user = new HashMap<>();
-            user.put("day",cursor.getString(cursor.getColumnIndex(KEY_DAY)));
-            user.put("startTime",cursor.getString(cursor.getColumnIndex(KEY_STIME)));
-            user.put("endTime",cursor.getString(cursor.getColumnIndex(KEY_ETIME)));
-            user.put("name",cursor.getString(cursor.getColumnIndex(KEY_NAME)));
-            userList.add(user);
-        }
-        return userList;
     }
     // Delete User Details
     public void DeleteUser(int userid){
@@ -103,16 +75,5 @@ public class DbHandler1 extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_DAY, KEY_DAY+" = ? AND "+KEY_STIME+" = ? AND "+KEY_ETIME+" = ?",new String[]{String.valueOf(day), String.valueOf(startTime), String.valueOf(endTime)});
         db.close();
-    }
-    // Update User Details
-    public int UpdateUserDetails(String day, String startTime, String endTime, String name, int id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cVals = new ContentValues();
-        cVals.put(KEY_DAY, day);
-        cVals.put(KEY_STIME, startTime);
-        cVals.put(KEY_ETIME, endTime);
-        cVals.put(KEY_NAME, name);
-        int count = db.update(TABLE_DAY, cVals, KEY_ID+" = ?",new String[]{String.valueOf(id)});
-        return  count;
     }
 }
