@@ -158,8 +158,24 @@ public class timeselect2 extends AppCompatActivity {
                         DbHandler1 dbHandler1 = new DbHandler1(timeselect2.this);
                         DbHandler2 dbHandler = new DbHandler2(timeselect2.this);
                         //DB에 추가
-                        dbHandler.insertUserDetails(day, stime, etime, name, color);
-                        dbHandler1.insertUserDetails(day, stime, etime, name);
+                        if (Stime < 10 && Etime < 10) {
+                            dbHandler.insertUserDetails(day, "0"+stime, "0"+etime, name, color);
+                            dbHandler1.insertUserDetails(day, "0"+stime, "0"+etime, name);
+                        }
+                        else if (Stime < 10) {
+                            dbHandler.insertUserDetails(day, "0"+stime, etime, name, color);
+                            dbHandler1.insertUserDetails(day, "0"+stime, etime, name);
+                        }
+                        else if (Etime < 10) {
+                            dbHandler.insertUserDetails(day, stime, "0"+etime, name, color);
+                            dbHandler1.insertUserDetails(day, stime, "0"+etime, name);
+                        }
+                        else {
+                            dbHandler.insertUserDetails(day, stime, etime, name, color);
+                            dbHandler1.insertUserDetails(day, stime, etime, name);
+                        }
+
+
                         Toast.makeText(getApplicationContext(), "일정을 저장했어요!", Toast.LENGTH_SHORT).show();
                         //돌아가기
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
