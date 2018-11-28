@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class Myservice extends Service {
     MediaPlayer mp;
+    Random generator = new Random();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -17,9 +18,13 @@ public class Myservice extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        mp = MediaPlayer.create(this, R.raw.traveller);
-        mp.setLooping(false); // 반복재생
+        int rNum = generator.nextInt(5);
+        if (rNum == 0) mp = MediaPlayer.create(this, R.raw.anthem);
+        else if (rNum == 1) mp = MediaPlayer.create(this, R.raw.chicken);
+        else if (rNum == 2) mp = MediaPlayer.create(this, R.raw.hard);
+        else if (rNum == 3) mp = MediaPlayer.create(this, R.raw.ticker);
+        else mp = MediaPlayer.create(this, R.raw.traveller);
+        mp.setLooping(false);
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
