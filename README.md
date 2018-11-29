@@ -1,6 +1,6 @@
 # TimeCircle
 
-Time table, Calendar application from Android Studio
+일간, 주간, 특정 날짜의 시간까지 등록하고 관리할 수 잇는 시간표 안드로이드 어플리케이션 입니다.
 
 ---
 ## Screenshots [11.28]
